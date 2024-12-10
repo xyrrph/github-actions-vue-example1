@@ -1,0 +1,26 @@
+name: Build vue
+
+on:
+  push:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use node and yarn via Volta
+      uses: volta-cli/action@v4
+
+    - name: Versions of build tools
+      run: |
+        node -v
+        yarn -v
+
+    - name: Build
+      run: |
+        yarn install
+        yarn build
+        ls -lR dist
